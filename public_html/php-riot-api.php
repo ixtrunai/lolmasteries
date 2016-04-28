@@ -45,7 +45,7 @@ class riotapi {
 	const API_URL_MASTERIES = 'https://{region}.api.pvp.net/championmastery/location/{platformId}/player/';
 
 
-	const API_KEY = 'e027311a-6796-43dc-b41c-c99b4ffc5166';
+	const API_KEY = 'INSERT_API_KEY_HERE';
 
 	// Rate limit for 10 minutes
 	const LONG_LIMIT_INTERVAL = 600;
