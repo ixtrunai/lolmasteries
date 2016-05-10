@@ -4,7 +4,6 @@
 	Language: Spanish
 	-----------------
 	
-	$_SESSION['servidor'] = guarda el servidor seleccionado para proximas busquedas
 	$_GET['nomInvocador'] = guarda el nombre introducido para realizar la búsqueda
 	$_GET['inputServer'] = guarda el servidor seleccionado para realizar la proxima busqueda
 	
