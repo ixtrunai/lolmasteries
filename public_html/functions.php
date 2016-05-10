@@ -221,8 +221,8 @@
 		include_once "php-riot-api.php";
 		include_once "FileSystemCache.php";
 		$info = new riotapi($region, new FileSystemCache('cache/'));
-		$conexion = mysql_connect("mysql.hostinger.es", "u772650915_unai", "-ElPutoAmo96-") or die("No se puede conectar al servidor");
-		Mysql_select_db ("u772650915_loldb") or die ("No se puede seleccionar");
+		$conexion = mysql_connect("dbhost", "user", "pass") or die("No se puede conectar al servidor");
+		Mysql_select_db ("db") or die ("No se puede seleccionar");
 		for($i=1; $i<5; $i++){
 			$sql_select = mysql_query("SELECT summ_id from champ$i where server='$region' ORDER BY points DESC LIMIT 1", $conexion);
 			$resultado = mysql_fetch_array($sql_select);
