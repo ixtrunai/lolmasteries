@@ -1,0 +1,269 @@
+#menu{
+	float: left;
+	color: #FFFFFF;
+	width: 40%;
+}
+#menu a{
+	color: #FFFFFF;
+}
+#menu li{
+	display: inline;
+    list-style: none;
+    border-left: 1px solid white;
+    padding-top: 11%;
+    padding-bottom: 3%;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+#menu .last{
+	border-right: 1px solid white;
+}
+header{
+	background-color: rgba(0, 0, 0, 0.35);
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+body{
+    background:  url("/images/background/2.jpg") no-repeat center center fixed;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+.container{
+	margin-top: 6%;
+	margin-left: 25%;
+	max-width: 50%;
+	float: left;
+	color: #FFFFFF;
+}
+.container_bot{
+	margin-bottom: 5%;
+    margin-left: 25%;
+    max-width: 50%;
+    color: #FFFFFF;
+}
+#exception{
+	margin-left: 25%;
+	max-width: 50%;
+}
+#tabla{
+	margin-top: 6%;
+}
+#masteriesTable tbody {
+    background-color: rgba(0, 0, 0, 0.62);
+}
+.masteriesTable{
+	max-width: 100%;
+	margin-left: 5%;
+	max-width: 90%;
+	color: #FFFFFF;
+}
+
+.masteriesTable a{
+	color: #FFFFFF;
+}
+.encabezado{
+	margin-left: 40%;
+    font-size: 3vw;
+    text-align: center;
+    padding-bottom: 20px;
+    float: left;
+}
+.summonerIcon{
+	width: 64px;
+	border-radius: 20%;
+}
+/*fijado en lo más bajo de la página*/
+footer{
+	text-align: center;
+	opacity: 0.7;
+}
+.static footer{
+	background-color: BFC8C1;
+	padding: 1%;
+	font-size: 1.10vw;
+	bottom:0;
+	left:0;
+	position:static;  
+    float: left;	
+}
+/*fijado en lo más bajo de la ventana*/
+.fixed footer{
+	background-color: BFC8C1;
+	padding: 1%;
+	font-size: 1.10vw;
+	bottom:0;
+	left:0;
+	position:fixed;  
+}
+#masteriesTable_filter label{
+	margin-left: -95%;
+}
+#languages{
+    margin-right: 5%;
+    text-align: right;
+    color: #FFFFFF;
+}
+#languages a, #languages1 a{
+	color: #FFFFFF;
+}
+
+
+/*MATCHISTORY*/
+#partidas{
+	margin-left: 30%;
+	margin-top: 2%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	float: left;
+}
+.partida{
+	float: left;
+	width: 100%;
+	margin-top: 5%;
+	background-color: rgba(91, 192, 222, 0.8);
+	padding-bottom: 5;
+}
+.titulo_partida{
+	margin-bottom: 2%;
+	background-color: rgb(51, 107, 189);
+	padding: 5;
+}
+.fechapartida{
+	float: right;
+}
+.encabezado1{
+	font-size: 3vw;
+    text-align: center;
+	padding-bottom: 20px;
+	margin-top: 3%;
+	color: #FFFFFF;
+}
+#languages1{
+	margin-right: 5%;
+    text-align: right;
+	color: #FFFFFF;
+}
+.equipo_izq{
+	float: right;
+}
+.equipo_der{
+	float: right;
+}
+.img_champ{
+	width: 100%;
+    border-radius: 50%;
+	border: 2px solid #a1a1a1;
+}
+.campeon_principal{
+	max-width: 16%;
+	float: left;
+	margin-left: 2%;
+	text-align: center;
+}
+.hechizos{
+	float: left;
+	margin-left: 3%;
+}
+.hechizo1{
+	margin-bottom: 10%;
+}
+.imghechizo{
+	width: 60%;
+    border-radius: 20%;
+}
+.kda{
+	float: left;
+    font-size: 2.5vw;
+	margin-top: 2%;
+	margin-left: -2%;
+	width: 13%;
+	text-align: center;
+}
+.multikill{
+	font-size: 1.1vw;
+}
+.muertes{
+	color: red;
+}
+.items{
+	float: left;
+    width: 25%;
+    margin-left: 2%;
+}
+.grupo1{
+	width: 100%;
+    float: left;
+}
+.grupo2{
+	width: 100%;
+    float: left;
+}
+.item{
+	border-radius: 20%;
+    width: 22%;
+    float: left;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+.talisman {
+    width: 25%;
+    border-radius: 20%;
+    margin-top: 2.5%;
+    float: left;
+    margin-left: -7%;
+}
+.stats{
+	float: left;
+    font-size: 1.2vw;
+    margin-left: 3%;
+    margin-top: -9%;
+}
+.cargarmas{
+	margin-top: 5%;
+    float: left;
+    width: 100%;
+	position:static;  
+}
+.colgatePuto{
+	position: fixed;
+	float: left;
+	margin-left: 3%;
+	max-width: 25%;
+	margin-top: -5%;
+}
+.champStats{
+    position: fixed;
+    float: left;
+    max-width: 25%;
+	margin-top: -0.7%;
+}
+.busqueda{
+	float: left;
+}
+.loadMore{
+	
+}
+#loading{
+	width: 100%;
+}
+
+/*LEADERBOARDS.PHP*/
+#masteries_by_region{
+	color: #FFFFFF;
+}
+#main_container{
+	margin-left: 5%;
+	margin-right: 5%;
+}
+#masteries_by_region .panel-body{
+	color: #000000;
+}
+#region{
+	width: 23%;
+	float: left;
+	margin-left: 1%;
+}
+.lastRegion{
+	margin-bottom: 10%;
+}
