@@ -46,4 +46,4 @@ NOTA: A día de hoy la página es totalmente distinta a la arriba descrita por m
   <li><a href='http://www.mysql.com/'>MySQL</a></li>
   <li><a href='https://github.com/kevinohashi/php-riot-api'>PHP-RIOT-API</a></li>
 </ul>
-Hosting gratuito por: <a href='https://www.hostinger.es'>www.hostinger.es</a>
+Hosting gratuito por: <a href='http://www.hostinger.es'>www.hostinger.es</a>
