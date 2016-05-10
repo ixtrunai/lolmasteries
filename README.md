@@ -1,5 +1,5 @@
-# lolmasteries
-LoL API Challenge, 2016 (work in progress)
+#LoL Masteries
+#LoL API Challenge, 2016 (work in progress)<br>
 I´ll do the description in Spanish ´cause my English is really poor.<br>
 
 Desde la página principal podremos introducir un nombre de invocador y elegir un servidor en el que se buscará dicho nombre.
