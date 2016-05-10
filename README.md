@@ -45,6 +45,8 @@ NOTA: A día de hoy la página es totalmente distinta a la arriba descrita por m
   <li><a href='http://getbootstrap.com/'>Bootstrap</a></li>
   <li><a href='https://jquery.com/'>JQuery</a></li>
   <li><a href='http://www.mysql.com/'>MySQL</a></li>
+  Others:<bR>
   <li><a href='https://github.com/kevinohashi/php-riot-api'>PHP-RIOT-API</a></li>
+  <li><a hrf='https://datatables.net/'>DataTables</a></li>
 </ul>
 Hosting gratuito por: <a href='http://www.hostinger.es'>www.hostinger.es</a>
