@@ -3,8 +3,8 @@
 	include_once 'functions.php';
 	header('Content-Type: text/html; charset=UTF-8');
 	session_start();
-	$conexion = mysql_connect("mysql.hostinger.es", "u772650915_unai", "-ElPutoAmo96-") or die("No se puede conectar al servidor");
-	Mysql_select_db ("u772650915_loldb") or die ("No se puede seleccionar");
+	$conexion = mysql_connect("dbhost", "user", "pass") or die("No se puede conectar al servidor");
+	Mysql_select_db ("db") or die ("No se puede seleccionar");
 ?>
 <html>
 	<head>
