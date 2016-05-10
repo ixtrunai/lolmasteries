@@ -22,4 +22,11 @@ En la página de Top jugadores se mostrarán los mejores juagdores de cada regio
 
 Todas las páginas cuentan con una traducción al inglés (que puede que no sea del todo correcta).<br>
 
+Tecnologias usadas:
+PHP
+SQL
+JS/JQUERY
+
+
+
 You can view the website here (WIP): http://lolmasteries.esy.es/
