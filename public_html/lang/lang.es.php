@@ -4,6 +4,7 @@
 	Language: Spanish
 	-----------------
 	
+	$_SESSION['servidor'] = guarda el servidor seleccionado para proximas busquedas
 	$_GET['nomInvocador'] = guarda el nombre introducido para realizar la búsqueda
 	$_GET['inputServer'] = guarda el servidor seleccionado para realizar la proxima busqueda
 	
@@ -48,7 +49,7 @@
 	$lang['MATCH_MDAMAGE_DEALT'] = 'Daño mágico realizado';
 	$lang['MATCH_WARDS_PLACED'] = 'Guardianes colocados';
 	$lang['MATCH_WARDS_DESTROYED'] = 'Guardianes destruidos';
-	$lang['MATCH_LOADMORE_BUTTON'] = 'Cargar más';
+	$lang['MATCH_LOADING'] = 'Cargando partidas ';
 	
 	//STATS CON CAMPEON (matchistory.php)
 	$lang['STATS_CHAMP'] = 'Estadísticas con ';
@@ -82,7 +83,7 @@
 	$lang['FORM_SERVER_TR_TITLE'] = 'Turquía';
 	
 	 
-	//TABLA DE CAMPEONES (index.php)
+	//TABLA DE CAMPEONES (index.php/leaderboards.php)
 	$lang['TABLE_CHAMPION'] = 'Campeon';
 	$lang['TABLE_LEVEL'] = 'Nivel';
 	$lang['TABLE_LEVEL_TITLE'] = 'Nivel de maestría: ';
@@ -90,7 +91,11 @@
 	$lang['TABLE_MAX_GRADE'] = 'Rango más alto';
 	$lang['TABLE_LAST_PLAYED'] = 'Jugado por última vez';
 	$lang['TABLE_CHAMP_TITLE'] = 'Rankeds jugadas con ';
+	$lang['TABLE_SUMM_NAME'] = "Nombre de invocador";
 	$lang['TABLE_SEARCHBOX_SET_LANG'] = 'Spanish';  //Archivo basado en --> http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json
+	
+	//TOP JUGADORES (leaderboards.php)
+	$lang['PAGE_HEADER'] = 'Maestrías de campeón por region';
 	
 	//EXCEPCIONES (index.php)
 	$lang['EXCEPTION_NOT_FOUND'] = 'No se ha encontrado ninguna cuenta con el nombre '. $_GET['nomInvocador'] .' en el servidor de '. strtoupper($_GET['inputServer']) .'.';

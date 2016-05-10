@@ -3,8 +3,8 @@
 	include_once 'functions.php';
 	header('Content-Type: text/html; charset=UTF-8');
 	session_start();
-	$conexion = mysql_connect("dbhost", "user", "pass") or die("No se puede conectar al servidor");
-	Mysql_select_db ("db") or die ("No se puede seleccionar");
+	$conexion = mysql_connect("mysql.hostinger.es", "u772650915_unai", "-ElPutoAmo96-") or die("No se puede conectar al servidor");
+	Mysql_select_db ("u772650915_loldb") or die ("No se puede seleccionar");
 ?>
 <html>
 	<head>
@@ -329,10 +329,10 @@
 				xmlhttp.onreadystatechange = function() {
 					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 						document.getElementById("partidas").innerHTML = document.getElementById("partidas").innerHTML + xmlhttp.responseText;
-						document.getElementById("loading").innerHTML = '';
+						$("#loading").remove();
 					}
 				};
-				document.getElementById("loading").innerHTML = '<img src="images/loading.gif" />';
+				document.getElementById("loading").innerHTML =  '<center><span class="encabezado1"><?php echo $lang['MATCH_LOADING'];?></span><img width="64px" src="images/loading.gif" /></center>';
 				xmlhttp.open("GET", "loadmore.php?nomInvocador=<?php echo $_GET['nomInvocador']?>&champId=<?php echo $_GET['champId']?>&server=<?php echo $_GET['server']?>", true);
 				xmlhttp.send();
 			}

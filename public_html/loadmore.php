@@ -3,8 +3,8 @@
 	include_once 'functions.php';
 	header('Content-Type: text/html; charset=UTF-8');
 	session_start();
-	$conexion = mysql_connect("dbhost", "user", "pass") or die("No se puede conectar al servidor");
-	Mysql_select_db ("db") or die ("No se puede seleccionar");
+	$conexion = mysql_connect("dbhost", "useri", "pass") or die("No se puede conectar al servidor");
+	Mysql_select_db ("dbname") or die ("No se puede seleccionar");
 	//API functions
 	include "php-riot-api.php";
 	include "FileSystemCache.php";
@@ -97,30 +97,20 @@
 						$rangoMasAlto = $maestrias[$m] -> highestGrade;
 						$fecha = $ultimaVezJugado/1000;
 						$fecha = date("Y-m-d H:i:s", strtotime('+2 hours', $fecha));
-						$sql_select = mysql_query("SELECT points from champ$idCampeon where summ_id = '$id_participante[$j]'", $conexion);
-						$sql_create = "CREATE TABLE IF NOT EXISTS champ$idCampeon (
-								summ_id VARCHAR(12) PRIMARY KEY, 
-								server VARCHAR(4), 
-								points INT NOT NULL,
-								playTime DATETIME NOT NULL,
-								level VARCHAR(1) NOT NULL,
-								grade VARCHAR(2) NOT NULL
-								);";
+						$sql_select = mysql_query("SELECT points from champs_summs where summ_id = '$id_participante[$j]' AND champ_id='$idCampeon'", $conexion);
 							if($sql_select == true){
 								$result = mysql_fetch_array($sql_select);
 							}
 							else{
 								$result[0] = "";
 							}
+							//insert if no results found on db
 							if(empty($result[0])){
-								mysql_query($sql_create, $conexion) or die("fallo al crear $sql_create");
-								mysql_query("INSERT INTO champ$idCampeon VALUES ('$id_participante[$j]', '$server', '$puntosMaestria', '$fecha', '$nivelCampeon', '$rangoMasAlto' )", $conexion) or die ("fallo al subir a bdd");
+								mysql_query("INSERT INTO champs_summs VALUES ('$idCampeon','$id_participante[$j]', '$server', '$puntosMaestria', '$fecha', '$nivelCampeon', '$rangoMasAlto' )", $conexion) or die ("fallo al insertar");
 							}
+							//update if points are greater than saved on db
 							else if($result[0]<$puntosMaestria){
-								$sql_delete = "DELETE FROM champ$idCampeon WHERE summ_id='$id_participante[$j]'";
-								mysql_query($sql_delete, $conexion) or die ("fallo al eliminar de bdd");
-								mysql_query($sql_create, $conexion);
-								mysql_query("INSERT INTO champ$idCampeon VALUES ('$id_participante[$j]', '$server', '$puntosMaestria', '$fecha', '$nivelCampeon', '$rangoMasAlto' )", $conexion) or die ("fallo al subir a bdd");
+								mysql_query("UPDATE champs_summs set points='$puntosMaestria' and playTime='$fecha' and level='$nivelCampeon' and grade='$rangoMasAlto' where summ_id = '$id_participante[$j]' AND champ_id='$idCampeon'", $conexion) or die ("fallo al actualizar");
 							}
 						else{
 							continue;
@@ -206,6 +196,6 @@
 		}
 		
 		echo "</div>";	
-		echo "<div id='loading'></div>";	
 	}
+	echo "<div id='loading'></div>";	
 ?>

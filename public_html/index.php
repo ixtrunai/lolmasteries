@@ -1,8 +1,8 @@
 <?php 
 	include_once 'lang/common.php';
 	session_start();	
-	$conexion = mysql_connect("dbhost", "user", "pass") or die("No se puede conectar al servidor");
-	Mysql_select_db ("db") or die ("No se puede seleccionar");
+	$conexion = mysql_connect("dbhost", "useri", "pass") or die("No se puede conectar al servidor");
+	Mysql_select_db ("dbname") or die ("No se puede seleccionar");
 ?>
 <html lang="es"><!--manifest="localCache.appcache"-->
   <head>
@@ -14,6 +14,11 @@
 	<meta name="keywords" content="lolmasteries, lol masteries, lol champion masteries, my champion masteries, maestrias lol, maestrias de campeon lol, maestrias de campeon, lolmaesteries.esy.es, lol.masteries">
     <meta name="author" content="IXTR Unai">
     <link rel="icon" href="images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">-->
     <title><?php echo $lang['INDEX_PAGE_TITLE']; ?></title>
@@ -78,9 +83,6 @@
 	
 		<div id="tabla">
 			<div class="masteriesTable">
-			<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-			<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-			<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 			<script>
 				//Original source:  https://www.datatables.net/
 				
@@ -178,29 +180,20 @@
 							$fecha = $ultimaVezJugado/1000;
 							$fecha = date("Y/m/d - H:i:s", strtotime('+2 hours', $fecha));
 							$campeon = $nom_campeon[$idCampeon];
-							$sql_select = mysql_query("SELECT points from champ$idCampeon where summ_id = '$id'", $conexion);
-							$sql_create = "CREATE TABLE IF NOT EXISTS champ$idCampeon (
-								summ_id VARCHAR(12) PRIMARY KEY, 
-								server VARCHAR(4), 
-								points INT NOT NULL,
-								playTime DATETIME NOT NULL,
-								level VARCHAR(1) NOT NULL,
-								grade VARCHAR(2) NOT NULL
-								);";
+							$sql_select = mysql_query("SELECT points from champs_summs where summ_id = '$id' AND champ_id='$idCampeon'", $conexion);
 							if($sql_select == true){
 								$result = mysql_fetch_array($sql_select);
 							}
 							else{
 								$result[0] = "";
 							}
+							//insert if no results found on db
 							if(empty($result[0])){
-								mysql_query($sql_create, $conexion) or die("fallo al crear $sql_create");
-								mysql_query("INSERT INTO champ$idCampeon VALUES ('$id', '$server', '$puntosMaestria', '$fecha', '$nivelCampeon', '$rangoMasAlto' )", $conexion) or die ("fallo al subir a bdd");
+								mysql_query("INSERT INTO champs_summs VALUES ('$idCampeon','$id', '$server', '$puntosMaestria', '$fecha', '$nivelCampeon', '$rangoMasAlto' )", $conexion) or die ("fallo al insertar");
 							}
+							//update if points are greater than saved on db
 							else if($result[0]<$puntosMaestria){
-								mysql_query("DELETE FROM champ$idCampeon WHERE summ_id='$id'", $conexion) or die ("fallo al eliminar de bdd");
-								mysql_query($sql_create, $conexion);
-								mysql_query("INSERT INTO champ$idCampeon VALUES ('$id', '$server', '$puntosMaestria', '$fecha', '$nivelCampeon', '$rangoMasAlto' )", $conexion) or die ("fallo al subir a bdd");
+								mysql_query("UPDATE champs_summs set points='$puntosMaestria' and playTime='$fecha' and level='$nivelCampeon' and grade='$rangoMasAlto' where summ_id = '$id' AND champ_id='$idCampeon'", $conexion) or die ("fallo al actualizar");
 							}
 							print "<tr><td><a title='".$lang['TABLE_CHAMP_TITLE']."$campeon' href='matchistory.php?server=$server&nomInvocador=".$_GET['nomInvocador']."&champId=$idCampeon'><img width='32px' src='http://ddragon.leagueoflegends.com/cdn/".$_SESSION['ddragon']."/img/champion/$campeon.png'/> $campeon</a></td><td><img title='".$lang['TABLE_LEVEL_TITLE']."$nivelCampeon' width='32px' src='images/masteries/mastery_lvl$nivelCampeon.png'/><span style='visibility:hidden;'>$nivelCampeon</span></td><td>$puntosMaestria</td><td>$rangoMasAlto</td><td>$fecha</td></tr>";
 							$loaded = true;
@@ -268,6 +261,4 @@
 		echo "<span class='fixed'><footer>".$lang['FOOTER_LEGAL']."</footer></span>";
 	}
   ?>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
 </html>

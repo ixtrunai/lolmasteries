@@ -1,9 +1,11 @@
 <?php
+	session_start();
 	/*
 	-----------------
 	Language: English
 	-----------------
 	
+	$_SESSION['servidor'] = saves the selected server for future searches
 	$_GET['nomInvocador'] = saves the entered name for the next search
 	$_GET['inputServer'] = saves the selected server for the next search
 	
@@ -47,7 +49,7 @@
 	$lang['MATCH_MDAMAGE_DEALT'] = 'Magical damage dealt';
 	$lang['MATCH_WARDS_PLACED'] = 'Wards placed';
 	$lang['MATCH_WARDS_DESTROYED'] = 'Wards destroyed';
-	$lang['MATCH_LOADMORE_BUTTON'] = 'Load more';
+	$lang['MATCH_LOADING'] = 'Loading matches ';
 	
 	//CHAMPION STATS (matchistory.php)
 	$lang['STATS_CHAMP'] = 'Stats with ';
@@ -80,7 +82,7 @@
 	$lang['FORM_SERVER_TR_TITLE'] = 'Turkey';
 	
 	 
-	//TABLA DE CAMPEONES (index.php)
+	//CHAMPIONS TABLE (index.php/leaderboards.php)
 	$lang['TABLE_CHAMPION'] = 'Champion';
 	$lang['TABLE_LEVEL'] = 'Level';
 	$lang['TABLE_LEVEL_TITLE'] = 'Mastery level: ';
@@ -88,7 +90,12 @@
 	$lang['TABLE_MAX_GRADE'] = 'Highest grade';
 	$lang['TABLE_LAST_PLAYED'] = 'Last time played';
 	$lang['TABLE_CHAMP_TITLE'] = 'Ranked games with ';
+	$lang['TABLE_SUMM_NAME'] = "Summoner name";
 	$lang['TABLE_SEARCHBOX_SET_LANG'] = 'English'; //File based on --> http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json
+	
+	//LEADERBOARDS (leaderboards.php)
+	$lang['PAGE_HEADER'] = 'Champion masteries by region';
+	
 	
 	//EXCEPTIONS (index.php)
 	$lang['EXCEPTION_NOT_FOUND'] = 'No account with the name '. $_GET['nomInvocador'] .' has been found in the '. strtoupper($_GET['inputServer']) .' server.';
