@@ -1,11 +1,9 @@
 <?php
-	session_start();
 	/*
 	-----------------
 	Language: English
 	-----------------
 	
-	$_SESSION['servidor'] = saves the selected server for future searches
 	$_GET['nomInvocador'] = saves the entered name for the next search
 	$_GET['inputServer'] = saves the selected server for the next search
 	
