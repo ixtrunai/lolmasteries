@@ -1,32 +1,41 @@
 #LoL Masteries
-#LoL API Challenge, 2016 (work in progress)<br>
+LoL API Challenge, 2016<br>
+You can view a live demo <a href='http://lolmasteries.esy.es/'>here</a>
 I´ll do the description in Spanish ´cause my English is really poor.<br>
 
-Desde la página principal podremos introducir un nombre de invocador y elegir un servidor en el que se buscará dicho nombre.
-Una vez realizada la búsqueda ciertos datos se guardarán en una base de datos y se mostrarán los campeones que hemos usado
-desde que se ha implementado el sistema de maestrías. La información que se mostrará es la siguiente:<br>
--Nombre del campeón<br>
--Nivel con el campeón<br>
--Puntos de maestría<br>
--Rango más alto alcanzado<br>
--La fecha en la que se ha jugado por última vez<br>
-Añadir a esto que la tabla es ordenable por cualquiera de estos campos haciendo click en el nombre del campo.<br>
+Esta página ha sido desarrollada para su participación en el concurso de la API de Riot. <br>
+Aunque la página no esta acabada en la fecha de finalización del concurso, seguiré con su desarrollo.<br>
+Es muy probable que la información del top jugadores no sea correcta, esta será más precisa cuándo se hayan realizado más búsquedas en la página.
 
-Si hacemos click en el nombre de un campeón, nos cargará las últimas 3 rankeds jugadas con ese campeón así como ciertas estadisiticas basadas es las últimas 10 partidas.<br>
+#Index.php
+Una vez que buscamos un invocador desde la página, se cargará una tabla con todos los campeones usados por dicho invocador
+desde que si implementó el sistema de maestrías. Todos los datos de esta tabla se obtendrán siempre mediante consultas a la API<br>
+Además, la página web almacenará TODA la información mostrada en la tabla en una base de datos (BDD) para su posterior uso en
+la página de TOP Jugadores.
 
-Si hacemos scroll hacía abajo se irán cargando las partidas de 3 en 3 y además esto hará que cierta información de esas partidas se guarde en una BDD.<br>
-*Esta página no esta del todo pulida aún.<br>
+Si haces click sobre cualquier campeón se cargará otra página mostrando datos sobre las últimas tres rankeds jugadas con dicho campeón.
 
-En la página de Top jugadores se mostrarán los mejores juagdores de cada region con los primeros 4 campeones (por id) de LoL.
-*Esta página esta en desarrollo.<br>
+#Matchistory.php
+A la izquierda aparecerán dos cuadros, uno para buscar otro invocador y otro que nos mostrará algunas estadisticas sobre las partidas jugadas con el campeon, basadas en las últimas 10 partidas (o menos, en caso de que no haya 10 partidas).
 
-Todas las páginas cuentan con una traducción al inglés (que puede que no sea del todo correcta).<br>
+A la derecha se cargarán los datos de las últimas 3 partidas (o menos, en caso de que no haya 3 partidas).
+Al hacer scroll, la página cargará otras 3 partidas siguiendo el siguiente proceso para cada iteración:
+<ol>
+  <li>Se hace una consulta a la API con el ID de partida</li>
+  <li>Se obtiene la lista de participantes de la partida</li>
+  <li>Por cada participante se obtiene la lista de campeones y sus maestrias (la misma info. que se obtendría al buscar un invocador desde index.php</li>
+  <li>Se guarda dicha información en la BDD</li>
+  <li>Se imprime la información de la partida</li>
+</ol>
+La idea original era hacer esto con todas las partidas (incluyendo la primeras 3), pero esto ralentizaba mucho la carga de la página, por lo que he optado por hacerlo una vez cargada la página con las primeras tres partidas.
+La información guardada en la BDD se utilizará posteriormente en leaderboards.php.
 
-Tecnologias usadas:
-PHP
-SQL
-JS/JQUERY
 
-
-
-You can view the website here (WIP): http://lolmasteries.esy.es/
+#Tecnologias usadas:
+<ul>
+  <li><a href='http://getbootstrap.com/'>Bootstrap</a></li>
+  <li><a href='https://jquery.com/'>JQuery</a></li>
+  <li><a href='http://www.mysql.com/'>MySQL</a></li>
+  <li><a href='https://github.com/kevinohashi/php-riot-api'>PHP-RIOT-API</a></li>
+</ul>
+Hosting gratuito por: <a href='www.hostinger.es'>www.hostinger.es</a>
