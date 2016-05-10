@@ -2,6 +2,7 @@
 LoL API Challenge, 2016<br>
 You can view a live demo <a href='http://lolmasteries.esy.es/'>here</a><br>
 I´ll do the description in Spanish because I don´t know how to explain myself in English.<br>
+Note: The webpage has an English translation which can have some errors. You can check it on <a href='https://github.com/ixtrunai/lolmasteries/blob/master/public_html/lang/lang.en.php'>/public_html/lang/lang.en.php</a><br>
 
 Esta página ha sido desarrollada para su participación en el concurso de la API de Riot. <br>
 Aunque la página no esta acabada en la fecha de finalización del concurso, seguiré con su desarrollo.<br>
