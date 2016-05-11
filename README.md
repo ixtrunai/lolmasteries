@@ -43,7 +43,7 @@ Esta página mostrará una tabla con todos los campeones registrados en la BDD y
   <li><a href='https://jquery.com/'>JQuery</a></li>
   <li><a href='http://www.mysql.com/'>MySQL</a></li>
 </ul>
-  Others:<br>
+  Otras:<br>
 <ul>
   <li><a href='https://github.com/kevinohashi/php-riot-api'>PHP-RIOT-API</a></li>
   <li><a href='https://datatables.net/'>DataTables</a></li>
