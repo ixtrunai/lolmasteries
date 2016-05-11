@@ -37,9 +37,6 @@ Cómo ya he explicado, estos datos son recogidos cada vez que se hace una búsqu
 La página aún esta en desarrollo y el diseño seguramente cambie por completo a un diseño más sencillo y ordenable (cómo el de index.php).
 Esta página mostrará una tabla con todos los campeones registrados en la BDD y al lado de cada campeón saldrá el invocador que más puntos tenga con dicho campeón. Al hacer click en un campeón podremos ver una tabla con los primeros 100 invocadores que más puntos tengan con el campeón (independientemente de la region a la que pertenezcan).
 
-NOTA: A día de hoy la página es totalmente distinta a la arriba descrita por motivos de testeo y debug.
-
-
 #Tecnologias usadas:
 <ul>
   <li><a href='http://getbootstrap.com/'>Bootstrap</a></li>
