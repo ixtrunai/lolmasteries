@@ -16,7 +16,7 @@ Si pulsas la opción "Buscar en partida", el sistema te redirigirá a livegame.p
 #Livegame.php
 Esta página es la encargada de mostrar la información de aquellos invocadores que se encuentran en una partida. Desde aquí podrás ver el nivel que tiene cada uno con el campeón que esta jugando en la partida.
 
-#Matchistory.php (página finalizada)
+#Matchistory.php
 A la izquierda aparecerán dos cuadros, uno para buscar otro invocador y otro que nos mostrará algunas estadisticas sobre las partidas jugadas con el campeon, basadas en las últimas 10 partidas (o menos, en caso de que no haya 10 partidas).
 
 A la derecha se cargarán los datos de las últimas 3 partidas (o menos, en caso de que no haya 3 partidas).
@@ -31,11 +31,9 @@ Al hacer scroll, la página cargará otras 3 partidas siguiendo el siguiente pro
 La idea original era hacer esto con todas las partidas (incluyendo la primeras 3), pero esto ralentizaba mucho la carga de la página, por lo que he optado por hacerlo una vez cargada la página con las primeras tres partidas.
 La información guardada en la BDD se utilizará posteriormente en leaderboards.php.
 
-#leaderboards.php (página en desarrollo)
-Esta es sin duda la página que más quebraderos de cabeza me ha causado, no por el diseño de la página en sí, sino por el trabajo de recoleccion de datos que esta requería.
-Cómo ya he explicado, estos datos son recogidos cada vez que se hace una búsqueda de un invocador, o cada vez que se acceden a las stats con un campeón.
-La página aún esta en desarrollo y el diseño seguramente cambie por completo a un diseño más sencillo y ordenable (cómo el de index.php).
-Esta página mostrará una tabla con todos los campeones registrados en la BDD y al lado de cada campeón saldrá el invocador que más puntos tenga con dicho campeón. Al hacer click en un campeón podremos ver una tabla con los primeros 100 invocadores que más puntos tengan con el campeón (independientemente de la region a la que pertenezcan).
+#Leaderboards.php
+Esta página recoge información de una base de datos propia y según los datos guardados mostrará a aquellos jugadores que más puntos de maestría tengan con cada campeón.<br>
+Si crees que deberías de aparecer en esta página con algún campeón y no estas, realiza una búsqueda de tu nombre de invocador desde index.php seleccionando la opción "Maestrías de campeones".
 
 #Tecnologias usadas:
 <ul>
