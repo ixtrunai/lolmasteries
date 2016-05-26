@@ -37,6 +37,7 @@ La idea original era hacer esto con todas las partidas (incluyendo la primeras 3
 La información guardada en la BDD se utilizará posteriormente en leaderboards.php.
 
 #Leaderboards.php
+<img align="right" width='420' src="http://lolmasteries.esy.es/images/others/leaderboards.jpg"></img>
 Esta página recoge información de una base de datos propia y según los datos guardados mostrará a aquellos jugadores que más puntos de maestría tengan con cada campeón.<br>
 Si crees que deberías de aparecer en esta página con algún campeón y no estas, realiza una búsqueda de tu nombre de invocador desde index.php seleccionando la opción "Maestrías de campeones".
 
