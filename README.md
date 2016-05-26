@@ -13,7 +13,7 @@ Esta es la página principal, desde ella podrás realizar una búsqueda del invo
 Si pulsas la opción "Maestrías de campeones", se te mostrará en una tabla todos los campeones que ha jugado desde que se introdujo el sistema de maestrías y sus respectivos niveles. Además, toda la información mostrada en la tabla se guardará en la base de datos.<br>
 Si pulsas la opción "Buscar en partida", el sistema te redirigirá a livegame.php.
 
-#Livegame.php:
+#Livegame.php
 Esta página es la encargada de mostrar la información de aquellos invocadores que se encuentran en una partida. Desde aquí podrás ver el nivel que tiene cada uno con el campeón que esta jugando en la partida.
 
 #Matchistory.php (página finalizada)
