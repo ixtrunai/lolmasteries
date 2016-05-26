@@ -1,4 +1,25 @@
 <?php
+	$dbhost = "dbHost_Here";
+	$dbuser = "dbUser_Here";
+	$dbpass = "dbPass_Here";
+	$dbname = "dbName_Here";
+	
+	//SET LAST DDRAGON VERSION 
+	if(empty($_SESSION['ddragon'])){
+		if(empty($_GET['inputServer'])){
+			$server = 'euw';
+		}
+		else{
+			$server = $_GET['inputServer'];
+		}
+		include_once 'php-riot-api.php';
+		include_once 'FileSystemCache.php';
+		$info = new riotapi($server, new FileSystemCache('cache/'));
+		$ddragon = $info->getStatic('versions');
+		$ddragon = explode('"', $ddragon);
+		$_SESSION['ddragon'] = $ddragon[1];
+	}
+	
 	//ITEM ID´S FIX
 	function setItem($item){
 		if($item == 1309){
@@ -215,28 +236,5 @@
 		$resultado[3] = "$tiempoHoras$tiempoMins:$tiempoSegs";
 		$resultado[4] = $maximo;
 		return $resultado;
-	}
-	function printLeaderboardsData($region){
-		include_once 'campeones.php';
-		include_once "php-riot-api.php";
-		include_once "FileSystemCache.php";
-		$info = new riotapi($region, new FileSystemCache('cache/'));
-		$conexion = mysql_connect("dbhost", "useri", "pass") or die("No se puede conectar al servidor");
-		Mysql_select_db ("dbname") or die ("No se puede seleccionar");
-		for($i=1; $i<5; $i++){
-			$sql_select = mysql_query("SELECT summ_id from champ$i where server='$region' ORDER BY points DESC LIMIT 1", $conexion);
-			$resultado = mysql_fetch_array($sql_select);
-			if(empty($resultado[0])){
-				continue;
-			}
-			else{
-				$nombre = $info->getSummoner($resultado[0], "name");
-				$nombre = json_decode($nombre);
-				$nombre = $nombre ->$resultado[0];
-				//$campeon = $nom_campeon[$i];
-				print "<a href='index.php?nomInvocador=$nombre&inputServer=$region&buscar='>$nombre</a><br>";				
-			}
-		}
-		echo "<a href='top_players.php?view=$region'>Ver lista completa</a>";
 	}
 ?>

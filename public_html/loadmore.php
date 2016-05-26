@@ -3,8 +3,8 @@
 	include_once 'functions.php';
 	header('Content-Type: text/html; charset=UTF-8');
 	session_start();
-	$conexion = mysql_connect("dbhost", "useri", "pass") or die("No se puede conectar al servidor");
-	Mysql_select_db ("dbname") or die ("No se puede seleccionar");
+	$conexion = mysql_connect($dbhost, $dbuser, $dbpass) or die("No se puede conectar al servidor");
+	Mysql_select_db ($dbname) or die ("No se puede seleccionar");
 	//API functions
 	include "php-riot-api.php";
 	include "FileSystemCache.php";

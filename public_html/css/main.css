@@ -9,14 +9,14 @@
 #menu li{
 	display: inline;
     list-style: none;
-    border-left: 1px solid white;
+    border-left: 1px solid #0D5CA0;
     padding-top: 11%;
     padding-bottom: 3%;
     padding-right: 1%;
     padding-left: 1%;
 }
 #menu .last{
-	border-right: 1px solid white;
+	border-right: 1px solid #0D5CA0;
 }
 header{
 	background-color: rgba(0, 0, 0, 0.35);
@@ -106,8 +106,16 @@ footer{
 #languages a, #languages1 a{
 	color: #FFFFFF;
 }
-
-
+.botones{
+	width: 48%;
+	float: left;
+}
+.ultboton{
+	margin-left: 4%;
+}
+.priboton{
+	margin-top: 5px;
+}
 /*MATCHISTORY*/
 #partidas{
 	margin-left: 30%;
@@ -267,7 +275,7 @@ footer{
 .lastRegion{
 	margin-bottom: 10%;
 }
-#leaderboardsTable tbody {
+#leaderboardsTable tbody, #leaderboardsTable_champ tbody{
     background-color: rgba(0, 0, 0, 0.62);
 }
 .leaderboardsTable{
@@ -280,7 +288,54 @@ footer{
 .leaderboardsTable a{
 	color: #FFFFFF;
 }
-#leaderboardsTable_wrapper label{
+#leaderboardsTable_wrapper label, #leaderboardsTable_champ_wrapper label{
 	margin-left: -93%;
 	margin-top: 5%;
+}
+
+/*livegame*/
+.redTeam{
+	background-color: rgba(173, 35, 35, 0.52);
+}
+.blueTeam{
+	background-color: rgba(42, 150, 202, 0.68);
+}
+.livegameTable{
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.livegameTable a{
+	color: #FFFFFF;
+}
+
+
+/*about*/
+.aboutContainer{
+	color: white;
+	background-color: rgba(0, 0, 0, 0.62);
+	padding: 1%;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+.aboutContainertable{
+	color: white;
+    width: 27%;
+}
+.aboutContainer a{
+	color: #337ab7;
+}
+.aboutContainer table{
+	color: white;
+}
+
+
+/*overwrite style*/
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
+.lesswidth{
+	width: 11%;
 }

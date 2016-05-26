@@ -12,14 +12,14 @@
 	$lang = array();
 
 	//TITULO DE LA VENTANA (index.php)
-	$lang['INDEX_PAGE_TITLE'] = '[BETA] Búsqueda de invocador';
+	$lang['INDEX_PAGE_TITLE'] = 'Búsqueda de invocador';
 	$lang['HEAD_DESCRIPTION'] = '¡Consulta tus maestrias de campeones o las de tus amigos!';
 	
 	//TITULO DE LA VENTANA (matchistory.php)
 	$lang['MATCHISTORY_PAGE_TITLE'] = '[BETA] Rankeds jugadas';
 	
 	//TITULO DE LA VENTANA (leaderboards.php)
-	$lang['LEADERBOARDS_PAGE_TITLE'] = '[INDEV] Top jugadores';
+	$lang['LEADERBOARDS_PAGE_TITLE'] = '[BETA] Top jugadores';
 	
 	//ENCABEZADO DEL FORMULARIO (index.php)
 	$lang['SEARCH_TITLE'] = 'Busca un invocador';
@@ -29,6 +29,8 @@
 	
 	//MENU
 	$lang['MENU_LEADERBOARDS'] = 'Top jugadores';
+	$lang['MENU_LIVEGAME'] = 'En partida';
+	$lang['MENU_ABOUT'] = 'Información';
 	
 	//DATOS PARTIDAS (matchistory.php)
 	$lang['MATCH_MAP_1'] = "Grieta del invocador (Variante de verano)";
@@ -67,7 +69,8 @@
 	$lang['FORM_SERVER'] = 'Servidor:'; //<-- este elemento no es visible
 	$lang['FORM_SERVER_TITLE'] = 'Selecciona el servidor';
 	$lang['FORM_SERVER_REMEMBER'] = 'Recordar servidor';		
-	$lang['FORM_SERVER_SEARCH'] = 'Buscar invocador';
+	$lang['FORM_SERVER_SEARCH'] = 'Maestrias de campeones';
+	$lang['FORM_SERVER_SEARCH_GAME'] = 'Buscar en partida';
 	
 	//SERVIDORES (index.php) (opciones de la etiqueta select)
 	$lang['FORM_SERVER_BR_TITLE'] = 'Brasil';
@@ -94,11 +97,15 @@
 	$lang['TABLE_SUMM_NAME'] = "Nombre de invocador";
 	$lang['TABLE_SEARCHBOX_SET_LANG'] = 'Spanish';  //Archivo basado en --> http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json
 	
+	//TITULO PAGINA (livegame.php)
+	$lang['H1_LIVEGAME'] = 'Información de la partida';
+	
 	//TOP JUGADORES (leaderboards.php)
 	$lang['PAGE_HEADER'] = 'Maestrías de campeón por region';
 	
-	//EXCEPCIONES (index.php)
+	//EXCEPCIONES (index.php / livegame.php)
 	$lang['EXCEPTION_NOT_FOUND'] = 'No se ha encontrado ninguna cuenta con el nombre '. $_GET['nomInvocador'] .' en el servidor de '. strtoupper($_GET['inputServer']) .'.';
+	$lang['EXCEPTION_LIVEGAME_NOT_FOUND'] = $_GET['nomInvocador']. " no esta jugando.";
 	
 	//FOOTER (index.php)
 	$lang['FOOTER_LEGAL'] = "<b>Página creada por <a href='https://twitter.com/ixtrunai'> IXTR Unai</a></b><br>	<b>Aviso legal:</b> LoL Masteries no esta apoyada por Riot Games y no refleja los puntos de vista u opiniones de Riot Games o de nadie oficialmente involucrado en la producción o gestión de League of Legends. League of Legends y Riot Games son marcas comerciales o marcas comerciales registradas de Riot Games, Inc. League of Legends © Riot Games, Inc."

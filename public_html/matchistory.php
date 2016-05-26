@@ -3,8 +3,8 @@
 	include_once 'functions.php';
 	header('Content-Type: text/html; charset=UTF-8');
 	session_start();
-	$conexion = mysql_connect("mysql.hostinger.es", "u772650915_unai", "-ElPutoAmo96-") or die("No se puede conectar al servidor");
-	Mysql_select_db ("u772650915_loldb") or die ("No se puede seleccionar");
+	$conexion = mysql_connect($dbhost, $dbuser, $dbpass) or die("No se puede conectar al servidor");
+	Mysql_select_db ($dbname) or die ("No se puede seleccionar");
 ?>
 <html>
 	<head>
@@ -22,8 +22,9 @@
 		<header>
 		<div id='menu'>
 			<ul>
-				<li><a href='index.php'>LoL Masteries</a></li>
-				<li class='last'><a href='leaderboards.php'><?php echo $lang['MENU_LEADERBOARDS']; ?></a></li>
+				<li><a href='index'>LoL Masteries</a></li>
+				<li><a href='leaderboards'><?php echo $lang['MENU_LEADERBOARDS']; ?></a></li>
+				<li class='last'><a href='about'><?php echo $lang['MENU_ABOUT']; ?></a></li>
 			</ul>
 		</div>
 		<div id="languages">
@@ -35,24 +36,24 @@
 					//IF SERVER WAS SELECTED
 					if(isset($_GET['server'])){
 						$nombre = str_replace(" ","+",$_GET['nomInvocador']);
-						echo "<a href='matchistory.php?nomInvocador=".$nombre."&server=".$_GET['server']."&champId=".$_GET['champId']."&lang=en'>English</a> | ";
-						echo "<a href='matchistory.php?nomInvocador=".$nombre."&server=".$_GET['server']."&champId=".$_GET['champId']."&lang=es'>Español</a>";
+						echo "<a href='matchistory?nomInvocador=".$nombre."&server=".$_GET['server']."&champId=".$_GET['champId']."&lang=en'>English</a> | ";
+						echo "<a href='matchistory?nomInvocador=".$nombre."&server=".$_GET['server']."&champId=".$_GET['champId']."&lang=es'>Español</a>";
 					}
 					//IF SERVER WASNT SELECTED BUT A SERVER WAS SAVED
 					else if(isset($_SESSION['servidor'])){
 						$nombre = str_replace(" ","+",$_GET['nomInvocador']);
-						echo "<a href='matchistory.php?nomInvocador=".$nombre."&server=".$_SESSION['servidor']."&champId=".$_GET['champId']."&lang=en'>English</a> | ";
-						echo "<a href='matchistory.php?nomInvocador=".$nombre."&server=".$_SESSION['servidor']."&champId=".$_GET['champId']."&lang=es'>Español</a>";
+						echo "<a href='matchistory?nomInvocador=".$nombre."&server=".$_SESSION['servidor']."&champId=".$_GET['champId']."&lang=en'>English</a> | ";
+						echo "<a href='matchistory?nomInvocador=".$nombre."&server=".$_SESSION['servidor']."&champId=".$_GET['champId']."&lang=es'>Español</a>";
 					}
 					else{
-						echo '<a href="index.php?lang=en">English</a> | ';
-						echo '<a href="index.php?lang=es">Español</a>';
+						echo '<a href="index?lang=en">English</a> | ';
+						echo '<a href="index?lang=es">Español</a>';
 					}
 				}
 				//DEFAULT PAGE LOAD (NO SEARCHES)
 				else{
-					echo '<a href="index.php?lang=en">English</a> | ';
-					echo '<a href="index.php?lang=es">Español</a>';
+					echo '<a href="index?lang=en">English</a> | ';
+					echo '<a href="index?lang=es">Español</a>';
 				}
 			?>
 			<?php
@@ -123,7 +124,7 @@
 						<div class='panel panel-primary'>
 							<div class='panel-heading'>".$lang['SEARCH_TITLE']."</div>
 							<div class='panel-body'>
-								<form action='index.php' method='GET'>
+								<form action='index' method='GET'>
 									<input type='text' name='nomInvocador' id='inputSummoner' class='form-control' title='".$lang['FORM_SUMMONER_NAME_TITLE']."' placeholder=".$lang['FORM_SUMMONER_NAME']." required autofocus><br>
 									<select name='inputServer' title='".$lang['FORM_SERVER_TITLE']."' id='inputServer' class='form-control'>
 										<option title='".$lang['FORM_SERVER_TITLE']."' $atributos selected>$opcion</option>
@@ -333,7 +334,7 @@
 					}
 				};
 				document.getElementById("loading").innerHTML =  '<center><span class="encabezado1"><?php echo $lang['MATCH_LOADING'];?></span><img width="64px" src="images/loading.gif" /></center>';
-				xmlhttp.open("GET", "loadmore.php?nomInvocador=<?php echo $_GET['nomInvocador']?>&champId=<?php echo $_GET['champId']?>&server=<?php echo $_GET['server']?>", true);
+				xmlhttp.open("GET", "loadmore?nomInvocador=<?php echo $_GET['nomInvocador']?>&champId=<?php echo $_GET['champId']?>&server=<?php echo $_GET['server']?>", true);
 				xmlhttp.send();
 			}
 		</script>

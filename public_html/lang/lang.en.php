@@ -13,13 +13,13 @@
 	$lang = array();
 	
 	//WINDOW TITLE (index.php)
-	$lang['INDEX_PAGE_TITLE'] = '[BETA] Summoner search';
+	$lang['INDEX_PAGE_TITLE'] = 'Summoner search';
 	$lang['HEAD_DESCRIPTION'] = 'Search for your champion masteries or for your friends champion masteries!';
 	//WINDOW TITLE (matchistory.php)
 	$lang['MATCHISTORY_PAGE_TITLE'] = '[BETA] Played rankeds';
 	
 	//WINDOW TITLE (leaderboards.php)
-	$lang['LEADERBOARDS_PAGE_TITLE'] = '[INDEV] Top players';
+	$lang['LEADERBOARDS_PAGE_TITLE'] = '[BETA] Leaderboards';
 	
 	//FORM HEADER (index.php)
 	$lang['SEARCH_TITLE'] = 'Search for summoner';
@@ -29,6 +29,8 @@
 	
 	//MENU
 	$lang['MENU_LEADERBOARDS'] = 'Leaderboards';
+	$lang['MENU_LIVEGAME'] = 'Live game';
+	$lang['MENU_ABOUT'] = 'About';
 	
 	//MATCH DATA (matchistory.php)
 	$lang['MATCH_MAP_1'] = "Summoner's Rift (Summer variant)";
@@ -66,7 +68,8 @@
 	$lang['FORM_SERVER'] = 'Server:'; //<-- este elemento no es visible
 	$lang['FORM_SERVER_TITLE'] = 'Select a server';
 	$lang['FORM_SERVER_REMEMBER'] = 'Remember the server';		
-	$lang['FORM_SERVER_SEARCH'] = 'Search for summoner';
+	$lang['FORM_SERVER_SEARCH'] = 'Champion masteries';
+	$lang['FORM_SERVER_SEARCH_GAME'] = 'Search on live game';
 	
 	//SERVERS (index.php)(form select tag -> options)
 	$lang['FORM_SERVER_BR_TITLE'] = 'Brazil';
@@ -93,12 +96,15 @@
 	$lang['TABLE_SUMM_NAME'] = "Summoner name";
 	$lang['TABLE_SEARCHBOX_SET_LANG'] = 'English'; //File based on --> http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json
 	
+	//PAGE HEADER (livegame.php)
+	$lang['H1_LIVEGAME'] = 'Live game info';
+	
 	//LEADERBOARDS (leaderboards.php)
 	$lang['PAGE_HEADER'] = 'Champion masteries by region';
 	
-	
-	//EXCEPTIONS (index.php)
+	//EXCEPTIONS (index.php / livegame.php)
 	$lang['EXCEPTION_NOT_FOUND'] = 'No account with the name '. $_GET['nomInvocador'] .' has been found in the '. strtoupper($_GET['inputServer']) .' server.';
+	$lang['EXCEPTION_LIVEGAME_NOT_FOUND'] = $_GET['nomInvocador']. " isn´t playing.";
 	
 	//FOOTER (index.php)
 	$lang['FOOTER_LEGAL'] = "<b>Created by <a href='https://twitter.com/ixtrunai'> IXTR Unai</a></b><br> LoL Masteries isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc."

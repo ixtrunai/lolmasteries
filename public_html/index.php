@@ -1,8 +1,9 @@
 <?php 
 	include_once 'lang/common.php';
+	include_once 'functions.php';
 	session_start();	
-	$conexion = mysql_connect("dbhost", "useri", "pass") or die("No se puede conectar al servidor");
-	Mysql_select_db ("dbname") or die ("No se puede seleccionar");
+	$conexion = mysql_connect($dbhost, $dbuser, $dbpass) or die("No se puede conectar al servidor");
+	Mysql_select_db ($dbname) or die ("No se puede seleccionar");
 ?>
 <html lang="es"><!--manifest="localCache.appcache"-->
   <head>
@@ -19,20 +20,17 @@
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">-->
-    <title><?php echo $lang['INDEX_PAGE_TITLE']; ?></title>
+    <title><?php echo $lang['INDEX_PAGE_TITLE']; ?></title>      
   </head>
 
   <body>
 	<header>
 		<div id='menu'>
 			<ul>
-				<li><a href='index.php'>LoL Masteries</a></li>
-				<li class='last'><a href='leaderboards.php'><?php echo $lang['MENU_LEADERBOARDS']; ?></a></li>
+				<li><a href='index'>LoL Masteries</a></li>
+				<li><a href='leaderboards'><?php echo $lang['MENU_LEADERBOARDS']; ?></a></li>
+				<li class='last'><a href='about'><?php echo $lang['MENU_ABOUT']; ?></a></li>
 			</ul>
-			<!--<a href='index.php'>LoL Masteries</a> |
-			<a href='index.php'>Leaderboards</a>-->
 		</div>
 		<div id="languages">
 			<?php
@@ -43,24 +41,24 @@
 					//IF SERVER WAS SELECTED
 					if(isset($_GET['inputServer'])){
 						$nombre = str_replace(" ","+",$_GET['nomInvocador']);
-						echo "<a href='index.php?nomInvocador=".$nombre."&inputServer=".$_GET['inputServer']."&lang=en&buscar='>English</a> | ";
-						echo "<a href='index.php?nomInvocador=".$nombre."&inputServer=".$_GET['inputServer']."&lang=es&buscar='>Español</a>";
+						echo "<a href='index?nomInvocador=".$nombre."&inputServer=".$_GET['inputServer']."&lang=en&buscar='>English</a> | ";
+						echo "<a href='index?nomInvocador=".$nombre."&inputServer=".$_GET['inputServer']."&lang=es&buscar='>Español</a>";
 					}
 					//IF SERVER WASNT SELECTED BUT A SERVER WAS SAVED
 					else if(isset($_SESSION['servidor'])){
 						$nombre = str_replace(" ","+",$_GET['nomInvocador']);
-						echo "<a href='index.php?nomInvocador=".$nombre."&inputServer=".$_SESSION['servidor']."&lang=en&buscar='>English</a> | ";
-						echo "<a href='index.php?nomInvocador=".$nombre."&inputServer=".$_SESSION['servidor']."&lang=es&buscar='>Español</a>";
+						echo "<a href='index?nomInvocador=".$nombre."&inputServer=".$_SESSION['servidor']."&lang=en&buscar='>English</a> | ";
+						echo "<a href='index?nomInvocador=".$nombre."&inputServer=".$_SESSION['servidor']."&lang=es&buscar='>Español</a>";
 					}
 					else{
-						echo '<a href="index.php?lang=en">English</a> | ';
-						echo '<a href="index.php?lang=es">Español</a>';
+						echo '<a href="index?lang=en">English</a> | ';
+						echo '<a href="index?lang=es">Español</a>';
 					}
 				}
 				//DEFAULT PAGE LOAD (NO SEARCHES)
 				else{
-					echo '<a href="index.php?lang=en">English</a> | ';
-					echo '<a href="index.php?lang=es">Español</a>';
+					echo '<a href="index?lang=en">English</a> | ';
+					echo '<a href="index?lang=es">Español</a>';
 				}
 			?>
 			<?php
@@ -138,7 +136,7 @@
 					if($_GET['inputServer'] == "null" || empty($_GET['inputServer'])){
 						//IF THERE IS NO SAVED SERVER
 						if(empty($_SESSION['servidor'])){
-							header("Location: index.php");
+							header("Location: index");
 						}
 					}
 					try{
@@ -161,9 +159,6 @@
 						$invocador = $invocador->$buscar;
 						$icono = $invocador->profileIconId;
 						//get ddragon version for loading images correctly
-						$ddragon = $info->getStatic('versions');
-						$ddragon = explode('"', $ddragon);
-						$_SESSION['ddragon'] = $ddragon[1];
 						$nombre = $invocador->name;
 						$nivel = $invocador->summonerLevel;
 						$id = $invocador->id;
@@ -195,7 +190,7 @@
 							else if($result[0]<$puntosMaestria){
 								mysql_query("UPDATE champs_summs set points='$puntosMaestria' and playTime='$fecha' and level='$nivelCampeon' and grade='$rangoMasAlto' where summ_id = '$id' AND champ_id='$idCampeon'", $conexion) or die ("fallo al actualizar");
 							}
-							print "<tr><td><a title='".$lang['TABLE_CHAMP_TITLE']."$campeon' href='matchistory.php?server=$server&nomInvocador=".$_GET['nomInvocador']."&champId=$idCampeon'><img width='32px' src='http://ddragon.leagueoflegends.com/cdn/".$_SESSION['ddragon']."/img/champion/$campeon.png'/> $campeon</a></td><td><img title='".$lang['TABLE_LEVEL_TITLE']."$nivelCampeon' width='32px' src='images/masteries/mastery_lvl$nivelCampeon.png'/><span style='visibility:hidden;'>$nivelCampeon</span></td><td>$puntosMaestria</td><td>$rangoMasAlto</td><td>$fecha</td></tr>";
+							print "<tr><td class='lesswidth'><a title='".$lang['TABLE_CHAMP_TITLE']."$campeon' href='matchistory?server=$server&nomInvocador=".$_GET['nomInvocador']."&champId=$idCampeon'><img width='32px' src='http://ddragon.leagueoflegends.com/cdn/".$_SESSION['ddragon']."/img/champion/$campeon.png'/> $campeon</a></td><td class='lesswidth'><img title='".$lang['TABLE_LEVEL_TITLE']."$nivelCampeon' width='32px' src='images/masteries/mastery_lvl$nivelCampeon.png'/> $nivelCampeon</td><td class='lesswidth'>$puntosMaestria</td><td class='lesswidth'>$rangoMasAlto</td><td class='lesswidth'>$fecha</td></tr>";
 							$loaded = true;
 						}
 						print "</tbody></table>";
@@ -220,7 +215,7 @@
 			</div>
 		</div>
 		<div class="<?php echo $containerclass;?>">
-	  <form action="index.php" method="GET">
+	  <form action="index" method="GET">
 			<h2><?php echo $lang['SEARCH_TITLE']; ?></h2>
 			<label for="inputSummoner" class="sr-only"><?php echo $lang['FORM_SUMMONER_NAME']; ?></label>
 			<input title="<?php echo $lang['FORM_SUMMONER_NAME_TITLE']; ?>" type="text" name="nomInvocador" id="inputSummoner" class="form-control" placeholder="<?php echo $lang['FORM_SUMMONER_NAME']; ?>" <?php echo $autofocus ?> required><br>
@@ -242,12 +237,11 @@
 			<div class="checkbox">
 			  <label>
 				<input <?php if(!empty($_SESSION['servidor'])){echo "checked";}?> type="checkbox" name="guardarServidor" value="true"> <?php echo $lang['FORM_SERVER_REMEMBER']; ?>
-			  </label>
-			  
+			  </label>			  
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" id="buscar" name="buscar" type="submit"><?php echo $lang['FORM_SERVER_SEARCH']; ?></button>
-			
-      </form>
+			<button class="botones priboton btn btn-lg btn-primary btn-block" id="buscar" name="buscar" type="submit"><?php echo $lang['FORM_SERVER_SEARCH']; ?></button>
+			<button class="botones ultboton btn btn-lg btn-primary btn-block" formaction="livegame.php" id="buscar" name="buscar" type="submit"><?php echo $lang['MENU_LIVEGAME']; ?></button>
+	  </form>
 	  </div>
      <!-- /container -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

@@ -101,6 +101,7 @@ $nom_campeon['134'] = "Syndra";
 $nom_campeon['223'] = "TahmKench";
 $nom_campeon['91'] = "Talon";
 $nom_campeon['44'] = "Taric";
+$nom_campeon['163'] = "Taliyah";
 $nom_campeon['17'] = "Teemo";
 $nom_campeon['412'] = "Thresh";
 $nom_campeon['18'] = "Tristana";

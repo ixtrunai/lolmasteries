@@ -72,10 +72,6 @@ class riotapi {
 									   429 => 'RATE_LIMIT_EXCEEDED',
 									   500 => 'SERVER_ERROR',
 									   503 => 'UNAVAILABLE');
-
-
-
-
 	// Whether or not you want returned queries to be JSON or decoded JSON.
 	// honestly I think this should be a public variable initalized in the constructor, but the style before me seems definitely to use const's.
 	// Remove this commit if you want. - Ahubers
@@ -142,7 +138,7 @@ class riotapi {
 		require_once('FileSystemCache.php');
 		$test = new riotapi($server, new FileSystemCache('cache/'));
 		try {
-			$nombreInvocador = str_replace(' ', '', $summoner_name);//Hacer un lowercase y quitar espacios
+			$nombreInvocador = str_replace(' ', '', $summoner_name);
 			$nombreInvocador = strtolower($nombreInvocador);
 			$r = $test->getSummonerByName($nombreInvocador);
 			$array = json_decode($r);
@@ -172,10 +168,9 @@ class riotapi {
 		return $this->request($call, true);
 	}
 
-	//gets current game information for player on platform (region?)
-	//platform seems to be just uppercase region and 1 afterwards right now.
-	public function getCurrentGame($id,$platform){
-		$call = self::API_URL_CURRENT_GAME_1_0 . $platform . '/' . $id;
+	public function getCurrentGame($id, $region){
+		$server = $this->setPlatform($region);  //$this para hacer referencia a esta clase (riotapi, s dfine en ln33)
+		$call = self::API_URL_CURRENT_GAME_1_0 . $server . '/' . $id;
 		return $this->request($call);
 	}
 
@@ -195,9 +190,16 @@ class riotapi {
 
 	//Returns a user's matchHistory given their summoner id.
 	public function getMatchHistory($id, $champId=null) {
-		$call = self::API_URL_2_2  . 'matchlist/by-summoner/' . $id . '?championIds='. $champId;
-		$other = '?championIds='. $champId;
-		return $this->request($call, $other);
+		if($champId==null){
+			$call = self::API_URL_2_2  . 'matchlist/by-summoner/' . $id;
+			return $this->request($call);
+		}
+		else{
+			$call = self::API_URL_2_2  . 'matchlist/by-summoner/' . $id . '?championIds='. $champId;
+			$other = '?championIds='. $champId;
+			return $this->request($call, $other);
+		}
+		
 	}
 
 	//Returns game statistics given a summoner's id.
@@ -287,8 +289,14 @@ class riotapi {
 
 		//add API URL to the call
 		$call = self::API_URL_1_4 . $call;
-
-		return $this->request($call);
+		
+		//print $this->request($call) ."<bR>";
+		try{
+			return $this->request($call);
+		}
+		catch(Exception $e){
+			return $this->request($call);
+		}
 	}
 
 	//Gets a summoner's info given their name, instead of id.
@@ -356,45 +364,53 @@ class riotapi {
 	}
 
 	private function request($call, $otherQueries=false, $static = false) {
-		//format the full URL
-		if(isset($this->PLATFORM)){
-			$url = $this->format_urlPlat($call, $otherQueries);
-		}
-		else{
-			$url = $this->format_url($call, $otherQueries);
-		}
-		//print $url."<br>";
-		//caching
-		if($this->cache !== null && $this->cache->has($url)){
-			$result = $this->cache->get($url);
-		} else {
-			// Check rate-limiting queues if this is not a static call.
-			if (!$static) {
-				$this->updateLimitQueue($this->longLimitQueue, self::LONG_LIMIT_INTERVAL, self::RATE_LIMIT_LONG);
-				$this->updateLimitQueue($this->shortLimitQueue, self::SHORT_LIMIT_INTERVAL, self::RATE_LIMIT_SHORT);
+		try{
+			//format the full URL
+			if(isset($this->PLATFORM)){
+				$url = $this->format_urlPlat($call, $otherQueries);
 			}
-
-			//call the API and return the result
-			$ch = curl_init($url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);			
-			$result = curl_exec($ch);
-			$this->responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			curl_close($ch);
-			if($this->responseCode == 200) {
-				if($this->cache !== null){
-					$this->cache->put($url, $result, self::CACHE_LIFETIME_MINUTES * 60);
-				}
+			else{
+				$url = $this->format_url($call, $otherQueries);
+			}
+			//Uncomment next line for debugging
+			//print "<a href='$url' target='_blank'>$url</a><br>";
+			
+			//caching
+			if($this->cache !== null && $this->cache->has($url)){
+				$result = $this->cache->get($url);
 			} else {
-				throw new Exception(self::$errorCodes[$this->responseCode]);
+				// Check rate-limiting queues if this is not a static call.
+				if (!$static) {
+					$this->updateLimitQueue($this->longLimitQueue, self::LONG_LIMIT_INTERVAL, self::RATE_LIMIT_LONG);
+					$this->updateLimitQueue($this->shortLimitQueue, self::SHORT_LIMIT_INTERVAL, self::RATE_LIMIT_SHORT);
+				}
+
+				//call the API and return the result
+				$ch = curl_init($url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);			
+				$result = curl_exec($ch);
+				$this->responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_close($ch);
+				if($this->responseCode == 200) {
+					if($this->cache !== null){
+						$this->cache->put($url, $result, self::CACHE_LIFETIME_MINUTES * 60);
+					}
+				} else {
+					throw new Exception(self::$errorCodes[$this->responseCode]);
+				}
 			}
+			if (self::DECODE_ENABLED) {
+				$result = json_decode($result, true);
+			}
+			return $result;
 		}
-		if (self::DECODE_ENABLED) {
-			$result = json_decode($result, true);
+		catch (Exception $e){
+			
 		}
-		return $result;
 	}
+	
 
 	//creates a full URL you can query on the API
 	private function format_url($call, $otherQueries=false){
