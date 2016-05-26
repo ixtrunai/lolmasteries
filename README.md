@@ -8,13 +8,13 @@ Esta página ha sido desarrollada para su participación en el concurso de la AP
 Aunque la página no esta acabada en la fecha de finalización del concurso, seguiré con su desarrollo.<br>
 Es muy probable que la información del top jugadores no sea correcta, esta será más precisa cuándo se hayan realizado más búsquedas en la página.
 
-#Index.php (página finalizada)
-Una vez que buscamos un invocador desde la página, se cargará una tabla con todos los campeones usados por dicho invocador
-desde que si implementó el sistema de maestrías. Todos los datos de esta tabla se obtendrán siempre mediante consultas a la API<br>
-Además, la página web almacenará TODA la información mostrada en la tabla en una base de datos (BDD) para su posterior uso en
-la página de TOP Jugadores.
+#Index.php
+Esta es la página principal, desde ella podrás realizar una búsqueda del invocador que quieras y tendrás dos opciones.<br>
+Si pulsas la opción "Maestrías de campeones", se te mostrará en una tabla todos los campeones que ha jugado desde que se introdujo el sistema de maestrías y sus respectivos niveles. Además, toda la información mostrada en la tabla se guardará en la base de datos.<br>
+Si pulsas la opción "Buscar en partida", el sistema te redirigirá a livegame.php.
 
-Si haces click sobre cualquier campeón se cargará otra página mostrando datos sobre las últimas tres rankeds jugadas con dicho campeón.
+#Livegame.php:
+Esta página es la encargada de mostrar la información de aquellos invocadores que se encuentran en una partida. Desde aquí podrás ver el nivel que tiene cada uno con el campeón que esta jugando en la partida.
 
 #Matchistory.php (página finalizada)
 A la izquierda aparecerán dos cuadros, uno para buscar otro invocador y otro que nos mostrará algunas estadisticas sobre las partidas jugadas con el campeon, basadas en las últimas 10 partidas (o menos, en caso de que no haya 10 partidas).
